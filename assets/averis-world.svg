@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1680 940" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="sky" x1=".1" y1="0" x2=".7" y2="1"><stop stop-color="#18092c"/><stop offset=".52" stop-color="#3e197c"/><stop offset="1" stop-color="#9430dc"/></linearGradient>
+ <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4b1594" stop-opacity="0"/><stop offset=".65" stop-color="#7825c7" stop-opacity=".55"/><stop offset="1" stop-color="#af3ffc"/></linearGradient>
+ <linearGradient id="light" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9b9ff"/><stop offset=".35" stop-color="#b05aff"/><stop offset="1" stop-color="#6823b5"/></linearGradient>
+ <linearGradient id="water" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#8540e5"/><stop offset=".5" stop-color="#d8abff"/><stop offset="1" stop-color="#6c27c0"/></linearGradient>
+ <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="13"/></filter>
+</defs>
+<rect width="1680" height="940" fill="url(#sky)"/>
+<path d="M0 0h1680v940H0Z" fill="url(#mist)"/>
+<!-- crescent moon -->
+<circle cx="615" cy="161" r="110" fill="#9e42e7" opacity=".5"/>
+<circle cx="567" cy="133" r="105" fill="#260d48"/>
+<!-- shooting light and stars -->
+<path d="M330 298 1325 0" stroke="#8e39ed" stroke-width="4" opacity=".6"/>
+<path d="M1324 0 403 286" stroke="#c45dff" stroke-width="1" opacity=".35"/>
+<g fill="#a65bff">
+<rect x="425" y="188" width="6" height="6"/><rect x="477" y="309" width="6" height="6"/><rect x="799" y="72" width="7" height="7"/><rect x="968" y="258" width="6" height="6"/><rect x="1074" y="147" width="6" height="6"/><rect x="1198" y="230" width="6" height="6"/><rect x="1440" y="141" width="6" height="6"/><rect x="1526" y="67" width="6" height="6"/><rect x="1580" y="257" width="6" height="6"/><rect x="315" y="440" width="5" height="5"/><rect x="132" y="622" width="5" height="5"/>
+</g>
+<!-- left high floating cliff and tree -->
+<path d="M0 0h198l-16 49h-58l-22 50-44 2-6 29 24 17 43 1 28-45 68-2 23-38 33 15 13-45 72-27-7 103-45 16-38 54-69-6-39 40-65-10-11 48-45 5-6 65L0 383Z" fill="#64229f"/>
+<path d="M0 0h490l-5 25-42 9-7 20-48-17-10 70-39 20-60 3-22 30-61 9-33 74-77-8 22-55 59-11 29-53-46 8-16-32-44-4-24-32H0Z" fill="#311051"/>
+<path d="m-10 373 62-49 93-28 153-56 42-5-180 77-95 113-54 297H0Z" fill="#8f37dc" opacity=".8"/>
+<path d="M0 727 25 518 45 322l103-42 42-11-122 42-46 230 35 165 268 1 9 36-336 43Z" fill="#260e50"/>
+<!-- hanging lantern -->
+<path d="M220 265v60m-10 0h20m-15-55v-20" stroke="#1d0a35" stroke-width="9"/>
+<path d="m195 337 18-19h16l18 19v90l-18 17h-16l-18-17Z" fill="#18072c" stroke="#24083f" stroke-width="8"/>
+<rect x="200" y="351" width="44" height="72" fill="#af49ef"/>
+<rect x="202" y="360" width="40" height="60" fill="#dda6ff" filter="url(#glow)" opacity=".8"/>
+<path d="m222 372 7 14 14 7-14 7-7 14-7-14-14-7 14-7Z" fill="#fff5ff"/>
+<!-- distant floating isles -->
+<path d="m302 564 89-20 7-76 23-14 13 82 49 16 14 36-45 5-19 51-39 13-35-32-24-34-22 2Z" fill="#562196"/>
+<path d="m722 651 59-14 40 4 24 24-25 27-21 48-27-8-28-38-16-4Z" fill="#4c1c80"/>
+<!-- right monolith & world -->
+<path d="m1324 546 17-164 16-18 16 12 6 60 27 0 8 35 44 18 3 55 86 9 59-8 12 45-99 28-50 61-105 52-124-33-106-53 25-71Z" fill="#351052"/>
+<path d="m1304 543 8-271 18-24 1 224 28 24 9 75Z" fill="#2c0c49"/>
+<path d="m1344 0 0 338-23 18 20 16 10 126 15 2-5-147-17-18Z" fill="url(#light)"/>
+<path d="m1344 0 2 337 34 18-35 13-2 170h10l4-169 25-19-25-18-1-332Z" fill="#a84eff" opacity=".9"/>
+<path d="m1351 340 10 18 18 10-18 10-10 18-10-18-18-10 18-10Z" fill="#ffdcff"/>
+<path d="m1351 351 6 17-6 16-6-16Z" fill="#6c27b4"/>
+<!-- main floating island and waterfalls -->
+<path d="M929 569 1106 538 1240 537 1408 544 1597 543 1568 591 1490 611 1454 688 1394 725 1360 770 1288 803 1239 790 1209 722 1151 705 1092 675 1041 672 996 627 949 609Z" fill="#35134f"/>
+<path d="M1071 558 1133 539 1456 537 1470 556 1470 692 1400 742 1337 820 1306 816 1313 576 1118 575 1116 863 1077 839Z" fill="#482064"/>
+<path d="M1074 570 1088 550 1122 539 1122 850 1107 880 1074 857Z" fill="url(#water)" opacity=".93"/>
+<path d="M1117 548 1130 541 1154 541 1138 551 1138 581 1129 571 1124 583Z" fill="#e1b3ff"/>
+<path d="M1454 547 1465 545 1474 559 1474 730 1441 782 1434 792 1442 560Z" fill="url(#water)" opacity=".9"/>
+<!-- luminous clouds -->
+<g fill="#a641ef">
+<path d="M0 706q68-122 183-90 75 15 95 91 84-38 127 19 84-55 156 25 96-62 150 39 112-66 184 47 68-40 126-16 118-60 190 23 92-48 176 7 91-96 201-23 66-27 92 1v116H0Z"/>
+<path d="M0 814q97-40 187 16 70-62 143-9 91-50 146-2 92-41 172 36 130-48 219 24 133-43 231 5 112-50 212 3 119-94 209-17 86-33 161 2v68H0Z" fill="#8a2fd9"/>
+</g>
+<!-- bottom silhouettes -->
+<path d="M0 744 322 707 333 765 188 780 536 809 557 859 714 887 740 940H0Z" fill="#210d3b"/>
+<path d="M0 814 308 779 529 818 554 867 703 893 717 940H0Z" fill="#2d1049"/>
+<path d="m579 866 19 34-8-37 18 17 16-34-4 41 20-14-13 27 27-9-19 28h-62Z" fill="#18072e"/>
+</svg>
