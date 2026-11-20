@@ -138,3 +138,25 @@ footer { background:#0e0719;border-color:#4c2e6e; }
   .rule-row { grid-template-columns:40px 1fr;gap:12px; }
   .rules-end { padding:25px; }
 }
+
+
+/* Project artwork supplied for Averis */
+.world-preview { padding:77px 0 95px; background:linear-gradient(180deg,#160a2c,#11091f);border-bottom:1px solid #51346e; }
+.world-preview-head { display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:20px; }
+.world-preview-head>span:last-child { color:#a97dc3;font:700 11px var(--display);letter-spacing:.12em; }
+.world-preview-frame { margin:0;position:relative;overflow:hidden;border:1px solid #7445a0;background:#281042;box-shadow:0 25px 65px #06020b80; }
+.world-preview-frame::after { content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 70px #11041955; }
+.world-preview-frame img { display:block;width:100%;height:auto;aspect-ratio:1300 / 731;object-fit:cover; }
+.world-preview-frame figcaption { position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:19px 25px;background:linear-gradient(0deg,#120821da,#12082100);color:#fff0ff;font:700 10px var(--display);letter-spacing:.12em;text-shadow:0 2px 10px #160820; }
+.world-preview-frame figcaption span { color:#e1b0ff; }
+@media(max-width:750px){
+.world-preview {padding:50px 0 62px;}
+.world-preview-head>span:last-child {font-size:9px;}
+.world-preview-frame figcaption {padding:14px 12px;font-size:8px;}
+}
+@media(max-width:510px) {
+.world-preview-head {display:block;}
+.world-preview-head>span:last-child {display:block;margin-top:11px;}
+.world-preview-frame img {aspect-ratio:1.1;object-position:center;}
+.world-preview-frame figcaption span {display:none;}
+}
