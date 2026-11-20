@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c0e0d">
+  <meta name="description" content="Averis — сюжетный Minecraft-сервер. Мир, который запоминает твой выбор.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Averis — мир, который помнит">
+  <meta property="og:description" content="Выживание, история и события, в которых важен каждый игрок.">
+  <meta property="og:url" content="https://funnysculk.github.io/averis-website/">
+  <title>Averis — мир, который помнит</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0c0e0d;
+      --bg-soft: #111413;
+      --panel: #171a18;
+      --panel-2: #1d211e;
+      --line: #323934;
+      --line-dim: #252b27;
+      --text: #f5f1e9;
+      --muted: #a4ada6;
+      --subtle: #6e7870;
+      --orange: #ff752f;
+      --orange-bright: #ff9952;
+      --orange-dim: #512b1c;
+      --radius: 5px;
+      --container: 1200px;
+      --font: "Manrope", "Segoe UI", sans-serif;
+      --display: "Space Grotesk", "Arial Black", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; min-width: 320px; overflow-x: hidden; background: var(--bg); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+    body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .13; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.4'/%3E%3C/svg%3E"); }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 5px; }
+    ::selection { background: var(--orange); color: #111; }
+    .shell { width: min(var(--container), calc(100% - 72px)); margin: 0 auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 11px; color: var(--orange-bright); font: 700 11px/1.5 var(--display); letter-spacing: .23em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 21px; height: 1px; background: currentColor; }
+    .muted { color: var(--muted); }
+    .progress { position: fixed; top: 0; left: 0; width: 0; height: 2px; background: var(--orange); z-index: 100; box-shadow: 0 0 10px #ff752f88; transition: width .1s linear; }
+    .header { position: sticky; top: 0; z-index: 50; background: rgba(12,14,13,.95); border-bottom: 1px solid var(--line-dim); backdrop-filter: blur(14px); }
+    .header-inner { height: 77px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; flex: none; font: 700 24px/1 var(--display); letter-spacing: -.06em; }
+    .brand svg { display: block; flex: none; width: 34px; height: 34px; }
+    .nav { display: flex; gap: clamp(20px,3vw,42px); align-items: center; margin-left: auto; }
+    .nav a { font-size: 12px; color: #aeb7af; font-weight: 700; transition: color .2s; }
+    .nav a:hover, .nav a.active { color: var(--text); }
+    .header-link { display: inline-flex; align-items: center; justify-content: center; gap: 12px; flex: none; min-height: 39px; padding: 0 17px; border: 1px solid #60412d; font: 800 11px/1 var(--display); letter-spacing: .09em; text-transform: uppercase; color: #ffb581; transition: border-color .2s, background .2s; }
+    .header-link:hover { background: #2a1d16; border-color: var(--orange); }
+    .header-link span { font-size: 18px; line-height: 0; }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); color: var(--text); background: transparent; align-items: center; justify-content: center; cursor: pointer; }
+    .menu-toggle svg { width: 20px; }
+    .hero { position: relative; isolation: isolate; border-bottom: 1px solid var(--line); overflow: hidden; }
+    .hero::before { content: ""; pointer-events: none; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 72% 45%, #3b2116 0%, transparent 42%), radial-gradient(ellipse at 3% 80%, #151b16 0%, transparent 46%); opacity: .7; }
+    .hero-grid { position: absolute; inset: 0; z-index: -1; opacity: .2; background-image: linear-gradient(#59625933 1px, transparent 1px),linear-gradient(90deg,#59625933 1px,transparent 1px); background-size: 80px 80px; mask-image: linear-gradient(to right,transparent,black 45%); }
+    .hero-content { display: grid; grid-template-columns: minmax(0,1.02fr) minmax(0,.98fr); min-height: 665px; align-items: center; gap: 20px; padding-top: 57px; padding-bottom: 67px; }
+    .hero-copy { position: relative; z-index: 3; padding: 34px 0 20px; }
+    .hero-label { display: inline-flex; align-items: center; gap: 11px; padding: 9px 12px; background: #20231d; border: 1px solid #343b30; font: 700 10px var(--display); letter-spacing: .11em; text-transform: uppercase; color: #c8d5c9; }
+    .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 4px #ff752f1f; }
+    h1,h2,h3,p { margin-top: 0; }
+    .hero h1 { margin: 29px 0 23px; max-width: 720px; font: 700 clamp(64px,7.1vw,112px)/.94 var(--display); letter-spacing: -.083em; text-transform: uppercase; }
+    .hero h1 span { color: var(--orange); }
+    .hero-description { max-width: 470px; color: #b5beb5; font: 500 16px/1.85 var(--font); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 35px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 25px; min-height: 52px; padding: 0 22px; font: 800 12px var(--display); letter-spacing: .025em; transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.primary { background: var(--orange); color: #1e110a; border: 1px solid var(--orange); }
+    .btn.primary:hover { background: #ff9658; }
+    .btn.secondary { background: #131614; color: var(--text); border: 1px solid #434a43; }
+    .btn.secondary:hover { border-color: var(--text); }
+    .btn svg { width: 17px; height: 17px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 25px; margin-top: 63px; color: #a8b1a8; font: 700 10px var(--display); letter-spacing: .11em; text-transform: uppercase; }
+    .hero-meta span { display: inline-flex; gap: 8px; align-items: center; }
+    .hero-meta span::before { content: "+"; color: var(--orange); font-size: 14px; }
+    .hero-art { position: relative; width: 100%; max-width: 620px; aspect-ratio: 1 / 1; justify-self: center; display: grid; place-items: center; }
+    .art-orbit { position: absolute; width: 88%; height: 88%; border: 1px solid #ad69421d; border-radius: 50%; transform: rotate(-18deg) scaleY(.84); }
+    .art-orbit::before { content: ""; position: absolute; inset: 12%; border: 1px dashed #ee844627; border-radius: 50%; }
+    .art-orbit::after { content: ""; position: absolute; top: 13%; left: 7%; width: 6px; height: 6px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 16px 4px #ff8b35b0; }
+    .world-diagram { width: 100%; overflow: visible; filter: drop-shadow(0 32px 58px #0008); animation: rise 7s ease-in-out infinite; }
+    .world-diagram .core-glow { filter: drop-shadow(0 0 32px #f2692788); }
+    .art-coordinate { position: absolute; font: 700 10px var(--display); letter-spacing: .11em; color: #838980; }
+    .art-coordinate.top { top: 7%; left: 8%; }
+    .art-coordinate.bottom { bottom: 11%; right: 3%; text-align: right; }
+    .art-tag { position: absolute; left: 2%; bottom: 17%; display: flex; align-items: center; gap: 10px; padding: 13px 15px; background: #171a18; border: 1px solid #424238; box-shadow: 0 15px 35px #0009; font: 700 10px var(--display); color: #d9ded5; letter-spacing: .09em; text-transform: uppercase; }
+    .art-tag i { width: 7px; height: 7px; background: var(--orange); transform: rotate(45deg); }
+    .ticker { border-bottom: 1px solid var(--line); background: #151815; }
+    .ticker-inner { display: grid; grid-template-columns: 155px 1fr; min-height: 65px; align-items: center; gap: 30px; }
+    .ticker-label { color: var(--orange); font: 800 10px var(--display); letter-spacing: .15em; }
+    .ticker-body { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; color: #c5cec5; font: 700 11px var(--display); letter-spacing: .04em; }
+    .ticker-body .sep { width: 4px; height: 4px; background: #6a786b; transform: rotate(45deg); }
+    .section { padding: 110px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 44px; }
+    .section-head h2, .chapter-title, .cta h2 { font: 700 clamp(39px,5.1vw,69px)/1.06 var(--display); letter-spacing: -.065em; text-transform: uppercase; }
+    .section-head h2 { margin: 15px 0 0; max-width: 680px; }
+    .section-head > p { width: 310px; max-width: 40%; margin: 0 0 6px; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .features { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .feature { position: relative; min-height: 305px; padding: 27px 24px 25px; background: var(--panel); border: 1px solid var(--line-dim); overflow: hidden; transition: border-color .25s, transform .25s; }
+    .feature:hover { border-color: #785035; transform: translateY(-4px); }
+    .feature::after { content: ""; position: absolute; height: 3px; width: 56px; bottom: 0; left: 24px; background: var(--orange); opacity: .55; }
+    .feature-num { font: 700 10px var(--display); letter-spacing: .16em; color: #69766b; }
+    .feature-icon { display: grid; place-items: center; width: 52px; height: 52px; margin: 31px 0 24px; border: 1px solid #62402d; background: #2b2019; color: var(--orange); }
+    .feature-icon svg { width: 25px; height: 25px; stroke-width: 1.5; }
+    .feature h3 { margin-bottom: 11px; font: 700 19px var(--display); letter-spacing: -.04em; }
+    .feature p { color: #9da79f; font: 500 12px/1.8 var(--font); margin-bottom: 0; }
+    .chapter { position: relative; padding: 100px 0 109px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #111411; overflow: hidden; }
+    .chapter::after { content: "02"; position: absolute; right: -8px; bottom: -74px; font: 700 330px/.8 var(--display); letter-spacing: -.1em; color: #ffffff05; pointer-events: none; }
+    .chapter-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px,10vw,150px); align-items: center; position: relative; z-index: 1; }
+    .chapter-visual { aspect-ratio: 1.03; display: flex; flex-direction: column; justify-content: space-between; position: relative; padding: 24px; border: 1px solid #463e33; background: radial-gradient(circle at 51% 55%,#6f3b203f,transparent 46%), linear-gradient(150deg,#21221d,#121713 62%,#181612); overflow: hidden; }
+    .chapter-visual::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px); background-size: 28px 28px; opacity: .4; mask-image: linear-gradient(to bottom,transparent,#000); }
+    .chapter-visual svg { position: absolute; inset: 5%; width: 90%; height: 90%; }
+    .visual-label,.visual-bottom { position: relative; z-index: 2; display: flex; justify-content: space-between; gap: 15px; font: 700 10px var(--display); letter-spacing: .12em; }
+    .visual-label { color: var(--orange-bright); }
+    .visual-bottom { color: #a8ada2; }
+    .chapter-title { margin: 20px 0 24px; max-width: 560px; }
+    .chapter-copy > p { max-width: 465px; color: #aab4aa; font: 500 15px/1.95 var(--font); }
+    .chapter-quote { margin-top: 36px; padding: 18px 0 18px 22px; border-left: 2px solid var(--orange); font: 500 17px/1.6 var(--display); color: #ece4d9; }
+    .story-kicker { font: 700 10px var(--display); letter-spacing: .14em; color: var(--orange); text-transform: uppercase; margin-bottom: 5px; }
+    .journey { padding-top: 115px; padding-bottom: 115px; }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 52px; border: 1px solid var(--line); }
+    .step { padding: 36px 30px 40px; min-height: 241px; border-right: 1px solid var(--line); background: #121513; }
+    .step:last-child { border-right: 0; }
+    .step-top { display: flex; align-items: center; justify-content: space-between; color: var(--orange); font: 700 13px var(--display); }
+    .step-top span:last-child { font-size: 21px; font-weight: 400; }
+    .step h3 { margin: 50px 0 11px; font: 700 23px var(--display); letter-spacing: -.04em; }
+    .step p { margin: 0; color: var(--muted); font: 500 13px/1.8 var(--font); }
+    .manifest { padding: 0 0 110px; }
+    .manifest-panel { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid #544033; background: #1e1b17; }
+    .manifest-left { padding: 47px 48px 52px; border-right: 1px solid #544033; }
+    .manifest-left h2 { margin: 21px 0 14px; font: 700 clamp(33px,4.8vw,56px)/1.06 var(--display); letter-spacing: -.065em; text-transform: uppercase; }
+    .manifest-left h2 span { color: var(--orange); }
+    .manifest-left p { font: 500 14px/1.9 var(--font); color: #bcb8ad; margin-bottom: 0; }
+    .manifest-right { display: flex; flex-direction: column; justify-content: center; gap: 20px; padding: 40px 48px; }
+    .manifest-row { display: flex; gap: 17px; align-items: flex-start; padding-bottom: 20px; border-bottom: 1px solid #4a3c32; }
+    .manifest-row:last-child { border: 0; padding-bottom: 0; }
+    .manifest-row strong { color: var(--orange); font: 700 12px var(--display); padding-top: 5px; }
+    .manifest-row div { color: #e6ded1; font: 600 14px/1.6 var(--font); }
+    .faq-section { border-top: 1px solid var(--line); background: #111411; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1.12fr; gap: 85px; }
+    .faq-grid .section-head { display: block; }
+    .faq-grid .section-head h2 { font-size: clamp(40px,4.5vw,64px); }
+    .faq-grid .section-head p { max-width: 360px; width: auto; margin: 22px 0 0; }
+    .faq-list { border-top: 1px solid #394139; }
+    details { border-bottom: 1px solid #394139; }
+    summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; list-style: none; padding: 24px 3px; font: 700 15px/1.5 var(--display); letter-spacing: -.02em; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; flex: none; color: var(--orange); font: 400 24px var(--display); }
+    details[open] summary::after { content: "−"; }
+    details p { color: var(--muted); font: 500 13px/1.85 var(--font); padding: 0 38px 25px 3px; margin: 0; }
+    .cta { position: relative; overflow: hidden; padding: 105px 0 110px; border-top: 1px solid #5b3824; background: radial-gradient(ellipse at 84% 100%,#7c351b66,transparent 53%),linear-gradient(135deg,#231910,#101311 62%); }
+    .cta::after { content: ""; position: absolute; right: -50px; top: -120px; width: 420px; height: 420px; border: 1px solid #a854282a; transform: rotate(45deg); pointer-events: none; }
+    .cta-content { position: relative; z-index: 1; display: flex; align-items: end; justify-content: space-between; gap: 35px; }
+    .cta h2 { max-width: 700px; margin: 21px 0 16px; }
+    .cta p { max-width: 480px; margin: 0; color: #b6b9ad; line-height: 1.8; }
+    .cta .btn { flex: none; }
+    footer { background: #0b0d0c; border-top: 1px solid #36372e; padding: 35px 0 30px; }
+    .footer-main { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 25px; align-items: center; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 24px; color: #afb7ae; font: 700 11px var(--display); }
+    .footer-nav a:hover { color: var(--orange); }
+    .footer-line { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px; padding-top: 28px; margin-top: 30px; border-top: 1px solid #292f2a; color: #717971; font: 500 11px/1.7 var(--font); }
+    .footer-line span:last-child { color: #a8b0a3; }
+    .reveal { opacity: 0; transform: translateY(19px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes rise { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @media (max-width: 1100px) {
+      .shell { width: min(var(--container), calc(100% - 48px)); }
+      .hero-content { min-height: 600px; }
+      .hero h1 { font-size: clamp(60px,7.8vw,92px); }
+      .features { grid-template-columns: repeat(2,1fr); }
+      .feature { min-height: 280px; }
+      .chapter-inner { gap: 50px; }
+    }
+    @media (max-width: 750px) {
+      .shell { width: calc(100% - 36px); }
+      .header-inner { height: 68px; }
+      .header-link { display: none; }
+      .menu-toggle { display: flex; }
+      .nav { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 12px 18px 18px; background: #101311; border-bottom: 1px solid var(--line); box-shadow: 0 15px 24px #0006; }
+      .nav.open { display: flex; }
+      .nav a { padding: 16px 7px; border-bottom: 1px solid #29312a; font-size: 14px; }
+      .hero-content { display: flex; flex-direction: column; gap: 0; padding-top: 55px; padding-bottom: 45px; min-height: auto; }
+      .hero-copy { padding: 0; width: 100%; }
+      .hero h1 { font-size: clamp(60px,12vw,90px); margin: 26px 0 18px; }
+      .hero-description { font-size: 14px; line-height: 1.8; }
+      .hero-meta { margin-top: 34px; gap: 15px; }
+      .hero-art { width: min(100%,480px); margin-top: 10px; margin-bottom: -25px; }
+      .ticker-inner { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; }
+      .ticker-body { gap: 10px; line-height: 1.8; }
+      .section { padding: 75px 0; }
+      .section-head { display: block; margin-bottom: 32px; }
+      .section-head h2 { font-size: clamp(39px,8vw,54px); }
+      .section-head > p { max-width: 540px; width: auto; margin: 19px 0 0; font-size: 13px; }
+      .chapter { padding: 70px 0; }
+      .chapter-inner { grid-template-columns: 1fr; gap: 41px; }
+      .chapter-visual { max-width: 550px; width: 100%; }
+      .chapter-title { font-size: clamp(42px,8vw,60px); }
+      .journey { padding: 80px 0; }
+      .steps { grid-template-columns: 1fr; }
+      .step { min-height: 0; border-right: none; border-bottom: 1px solid var(--line); padding: 25px 27px 28px; }
+      .step:last-child { border-bottom: none; }
+      .step h3 { margin: 25px 0 9px; }
+      .manifest { padding-bottom: 80px; }
+      .manifest-panel { grid-template-columns: 1fr; }
+      .manifest-left { padding: 34px 30px; border-right: 0; border-bottom: 1px solid #544033; }
+      .manifest-right { padding: 32px 30px; }
+      .faq-grid { grid-template-columns: 1fr; gap: 10px; }
+      .faq-grid .section-head h2 { font-size: 46px; }
+      .cta { padding: 75px 0; }
+      .cta-content { display: block; }
+      .cta h2 { font-size: clamp(44px,8.5vw,67px); }
+      .cta .btn { margin-top: 28px; }
+    }
+    @media (max-width: 510px) {
+      .hero h1 { font-size: clamp(54px,13.5vw,75px); }
+      .hero-actions { gap: 10px; }
+      .hero-actions .btn { flex: 1 1 100%; }
+      .hero-meta { font-size: 9px; }
+      .features { grid-template-columns: 1fr; }
+      .feature { min-height: 250px; padding: 25px; }
+      .feature-icon { margin: 22px 0 17px; }
+      .feature h3 { font-size: 21px; }
+      .art-tag { left: 0; bottom: 12%; font-size: 8px; padding: 10px; }
+      .art-coordinate { font-size: 8px; }
+      .chapter-visual { padding: 16px; }
+      .manifest-left h2 { font-size: 43px; }
+      .footer-main { align-items: start; flex-direction: column; }
+      .footer-line { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Averis — на главную">
+        <svg viewBox="0 0 40 40" role="img" aria-label="Символ Averis"><path d="M20 3 37 33H27L20 19 13 33H3L20 3Z" fill="#ff752f"/><path d="M16 27h8l4 6H12l4-6Z" fill="#f5f1e9"/><path d="M20 4v14" stroke="#20130c" stroke-width="2"/></svg>
+        AVERIS
+      </a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a href="#features">Особенности</a>
+        <a href="#story">История</a>
+        <a href="#journey">Твой путь</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+      <a class="header-link" href="#start">Узнать больше <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="shell hero-content">
+        <div class="hero-copy">
+          <div class="hero-label"><span class="live-dot" aria-hidden="true"></span> Minecraft · Сюжетное выживание</div>
+          <h1 id="hero-title">МИР,<br>КОТОРЫЙ<br><span>ПОМНИТ.</span></h1>
+          <p class="hero-description">Здесь история не идёт по готовому сценарию. Она меняется вместе с теми, кто решает стать её частью. Добро пожаловать в Averis.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#story">Узнать историю
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+            </a>
+            <a class="btn secondary" href="#features">Что ждёт в мире
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m7 10 5 5 5-5"/></svg>
+            </a>
+          </div>
+          <div class="hero-meta"><span>Один мир</span><span>Разные судьбы</span><span>Твой выбор</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit"></div>
+          <div class="art-coordinate top">A-001 // UNCHARTED<br>51° 08' 11"</div>
+          <svg class="world-diagram" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="frame" x1="110" y1="90" x2="540" y2="520" gradientUnits="userSpaceOnUse"><stop stop-color="#ad643c"/><stop offset=".5" stop-color="#32251b"/><stop offset="1" stop-color="#ff9346"/></linearGradient>
+              <linearGradient id="stone" x1="230" y1="150" x2="390" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#4b3b30"/><stop offset=".45" stop-color="#211f1c"/><stop offset="1" stop-color="#0a0e0c"/></linearGradient>
+              <linearGradient id="fire" x1="244" y1="173" x2="351" y2="433" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb466"/><stop offset=".44" stop-color="#ff6e2b"/><stop offset="1" stop-color="#5f2615"/></linearGradient>
+              <radialGradient id="halo"><stop stop-color="#ff742f" stop-opacity=".5"/><stop offset=".43" stop-color="#ff742f" stop-opacity=".12"/><stop offset="1" stop-color="#ff742f" stop-opacity="0"/></radialGradient>
+            </defs>
+            <ellipse cx="300" cy="310" rx="250" ry="258" fill="url(#halo)"/>
+            <path d="m300 45 231 132v266L300 575 69 443V177L300 45Z" stroke="#ff843333" stroke-width="1.5"/>
+            <path d="m300 80 203 116v228L300 540 97 424V196L300 80Z" stroke="#ff843344" stroke-width="1.2" stroke-dasharray="3 10"/>
+            <path d="m300 100 172 99v200L300 498 128 399V199L300 100Z" fill="#130f0d" stroke="url(#frame)" stroke-width="5"/>
+            <path d="m300 125 149 86v177L300 474l-149-86V211l149-86Z" stroke="#7d5036" stroke-width="1.5"/>
+            <path d="M300 125v349M151 211l298 177M449 211 151 388" stroke="#ba653d" stroke-opacity=".14" stroke-width="2"/>
+            <path d="m300 158 125 72v143l-125 72-125-72V230l125-72Z" fill="#201811" stroke="#8a4b2c" stroke-width="2"/>
+            <path class="core-glow" d="m300 178 109 63v121l-109 63-109-63V241l109-63Z" fill="url(#fire)"/>
+            <path d="m300 178 109 63-109 65-109-65 109-63Z" fill="#ffbf78" fill-opacity=".4"/>
+            <path d="M300 306v119l109-63V241l-109 65Z" fill="#5a2416" fill-opacity=".65"/>
+            <path d="m300 195 94 55v104l-94 55-94-55V250l94-55Z" fill="#111411" stroke="#fca45a" stroke-width="5"/>
+            <path d="m300 209 81 47v92l-81 47-81-47v-92l81-47Z" fill="url(#stone)"/>
+            <path d="m300 209 81 47-81 47-81-47 81-47Z" fill="#4e3c2c"/>
+            <path d="M300 303v92l81-47v-92l-81 47Z" fill="#181b19"/>
+            <path d="m300 234 59 34-59 34-59-34 59-34Z" fill="#f98236"/>
+            <path d="M241 268v64l59 35v-65l-59-34Z" fill="#b94c25"/>
+            <path d="M300 302v65l59-35v-64l-59 34Z" fill="#662d1d"/>
+            <path d="m300 261 35 21-35 20-35-20 35-21Z" fill="#ffbf71"/>
+            <path d="m300 302 35-20v27l-35 20v-27Z" fill="#ff8c3e"/>
+            <path d="m265 282 35 20v27l-35-20v-27Z" fill="#e2622c"/>
+            <path d="m300 130 0-37M300 480v37M140 216l-32-19M460 382l32 19M460 216l32-19M140 382l-32 19" stroke="#cb7041" stroke-width="1.5"/>
+            <g fill="#ff8a3f"><circle cx="300" cy="80" r="4"/><circle cx="97" cy="196" r="3"/><circle cx="503" cy="424" r="3"/><circle cx="300" cy="540" r="4"/></g>
+            <g stroke="#cb704155"><path d="M42 305h75m365 0h76M300 14v52m0 468v52"/></g>
+          </svg>
+          <div class="art-tag"><i></i> Мир открыт для историй</div>
+          <div class="art-coordinate bottom">FRAGMENT / 01<br>AVERIS ARCHIVE</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker">
+      <div class="shell ticker-inner">
+        <span class="ticker-label">/// О ПРОЕКТЕ</span>
+        <div class="ticker-body"><span>Сюжетный Minecraft-сервер</span><span class="sep" aria-hidden="true"></span><span>Свобода решений</span><span class="sep" aria-hidden="true"></span><span>Развитие мира вместе с игроками</span></div>
+      </div>
+    </div>
+
+    <section class="section shell" id="features" aria-labelledby="features-title">
+      <div class="section-head reveal">
+        <div><span class="eyebrow">01 / Необычное выживание</span><h2 id="features-title">БОЛЬШЕ, ЧЕМ<br>ПРОСТО СЕРВЕР.</h2></div>
+        <p>Ты сам решаешь, кем станешь. Averis даёт мир и историю, а что произойдёт дальше — зависит от игроков.</p>
+      </div>
+      <div class="features">
+        <article class="feature reveal">
+          <span class="feature-num">01 / SURVIVAL</span>
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 0v20M3 7l9 5 9-5"/></svg></div>
+          <h3>Свой мир</h3>
+          <p>Строй, исследуй и находи своё место. Выживание остаётся основой, но на этом всё не заканчивается.</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-num">02 / NARRATIVE</span>
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 5.5C7 4 9.5 4 12 6c2.5-2 5-2 8-.5V19c-3-1.5-5.5-1.5-8 .5-2.5-2-5-2-8-.5V5.5ZM12 6v13.5"/></svg></div>
+          <h3>Живая история</h3>
+          <p>События идут своим чередом, а поступки игроков влияют на то, как будет складываться история.</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-num">03 / ARTIFACTS</span>
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m12 2 8 8-8 12-8-12 8-8Zm-8 8h16M12 2l-3 8 3 12 3-12-3-8Z"/></svg></div>
+          <h3>Артефакты</h3>
+          <p>Необычные силы, загадки и последствия. Важно не только то, что ты найдёшь, но и как используешь находку.</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-num">04 / CHARACTERS</span>
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3M19 4l2 2-2 2"/></svg></div>
+          <h3>Твоя роль</h3>
+          <p>Создавай характер, отношения и собственную историю внутри общего мира.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="chapter" id="story" aria-labelledby="story-title">
+      <div class="shell chapter-inner">
+        <div class="chapter-visual reveal" aria-hidden="true">
+          <div class="visual-label"><span>ARCHIVE / 001</span><span>НЕИЗВЕСТНО</span></div>
+          <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <circle cx="250" cy="250" r="170" stroke="#ff8a4333" stroke-width="1" stroke-dasharray="2 9"/>
+            <circle cx="250" cy="250" r="127" stroke="#ff8a4344" stroke-width="1"/>
+            <path d="m250 58 170 96v192l-170 96-170-96V154l170-96Z" stroke="#ff8a4388" stroke-width="2"/>
+            <path d="m250 88 144 81v163l-144 81-144-81V169l144-81Z" fill="#181a17" stroke="#9e5834" stroke-width="1.5"/>
+            <path d="m250 125 113 64v124l-113 64-113-64V189l113-64Z" fill="#292017"/>
+            <path d="m250 125 113 64-113 65-113-65 113-64Z" fill="#61361e"/>
+            <path d="M250 254v123l113-64V189l-113 65Z" fill="#1b211b"/>
+            <path d="m250 165 78 44v85l-78 45-78-45v-85l78-44Z" stroke="#f58a45" stroke-width="3" fill="#171713"/>
+            <path d="m250 165 78 44-78 44-78-44 78-44Z" fill="#c96c34"/>
+            <path d="m250 253 78-44v85l-78 45v-86Z" fill="#6b3a25"/>
+            <path d="m212 218 38-21 38 21-38 22-38-22Z" fill="#ffd08f"/>
+            <path d="m212 218 38 22v44l-38-22v-44Z" fill="#ff863b"/>
+            <path d="m250 240 38-22v44l-38 22v-44Z" fill="#b95326"/>
+            <g fill="#ff7b34"><circle cx="80" cy="154" r="4"/><circle cx="420" cy="346" r="4"/><circle cx="250" cy="58" r="4"/></g>
+            <path d="M250 0v48M250 450v50M0 250h70M430 250h70" stroke="#ff7b3444"/>
+          </svg>
+          <div class="visual-bottom"><span>НЕ ВСЁ ЗАБЫТО</span><span>01 / ∞</span></div>
+        </div>
+        <div class="chapter-copy reveal">
+          <div class="story-kicker">Фрагмент 001</div>
+          <span class="eyebrow">Предыстория</span>
+          <h2 class="chapter-title" id="story-title">НЕКОТОРЫЕ<br>ТАЙНЫ ЛУЧШЕ<br>НЕ ТРОГАТЬ.</h2>
+          <p>Много лет назад одна экспедиция отправилась в горы и исчезла. Позже часть путешественников вернулась. Никто из них так и не рассказал, что произошло под землёй.</p>
+          <p>Время прошло. Истории превратились в слухи. Но кое-что осталось.</p>
+          <div class="chapter-quote">«Прошлое не исчезает бесследно.<br>Иногда оно просто ждёт».</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journey shell" id="journey" aria-labelledby="journey-title">
+      <div class="section-head reveal">
+        <div><span class="eyebrow">03 / Твой путь</span><h2 id="journey-title">ОДИН МИР.<br>ТЫСЯЧИ ИСТОРИЙ.</h2></div>
+        <p>Здесь не нужно играть заранее написанного героя. Достаточно начать — а дальше у каждого будет свой путь.</p>
+      </div>
+      <div class="steps">
+        <article class="step reveal"><div class="step-top"><span>ЭТАП / 01</span><span>↗</span></div><h3>Появись в мире</h3><p>Начни обычное выживание. Знакомься с людьми, исследуй места и узнавай, как устроен Averis.</p></article>
+        <article class="step reveal"><div class="step-top"><span>ЭТАП / 02</span><span>↗</span></div><h3>Сделай выбор</h3><p>Вмешайся в события или иди своей дорогой. Не каждое решение можно будет отменить.</p></article>
+        <article class="step reveal"><div class="step-top"><span>ЭТАП / 03</span><span>↗</span></div><h3>Оставь след</h3><p>Твоя история станет частью истории сервера. И мир будет помнить то, что произошло.</p></article>
+      </div>
+    </section>
+
+    <section class="manifest shell" aria-label="Главная идея Averis">
+      <div class="manifest-panel reveal">
+        <div class="manifest-left">
+          <span class="eyebrow">Манифест Averis</span>
+          <h2>НЕ ЗРИТЕЛЬ.<br><span>УЧАСТНИК.</span></h2>
+          <p>У событий есть начало. Но никто не обещал, что у них всего один возможный конец.</p>
+        </div>
+        <div class="manifest-right">
+          <div class="manifest-row"><strong>01</strong><div>Персонаж — не декорация, а часть мира.</div></div>
+          <div class="manifest-row"><strong>02</strong><div>Решения важнее заранее прописанного маршрута.</div></div>
+          <div class="manifest-row"><strong>03</strong><div>Своя история у каждого. Общая — у всех.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="shell faq-grid">
+        <div class="section-head reveal">
+          <span class="eyebrow">04 / Перед началом</span>
+          <h2 id="faq-title">ЕСТЬ<br>ВОПРОСЫ?</h2>
+          <p>Самое важное о проекте. Подробности подключения и открытия появятся по мере подготовки сервера.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details><summary>Что такое Averis?</summary><p>Averis — Minecraft-сервер с выживанием, общим сюжетом и историями игроков, на которые влияют их решения.</p></details>
+          <details><summary>Нужно ли участвовать в сюжете?</summary><p>Необязательно быть в центре каждого события. Ты можешь играть в своём темпе, строить, исследовать и постепенно узнавать мир.</p></details>
+          <details><summary>Когда можно будет зайти?</summary><p>Дату открытия и способ подключения объявят отдельно. Сейчас проект находится в подготовке — мы не хотим указывать на сайте неподтверждённый срок.</p></details>
+          <details><summary>Где скачать лаунчер?</summary><p>У Averis есть отдельный проект лаунчера, но ссылка на готовый релиз пока не опубликована. Когда он будет доступен, на сайте появится кнопка скачивания.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="start" aria-labelledby="cta-title">
+      <div class="shell cta-content">
+        <div class="reveal">
+          <span class="eyebrow">Начало ещё впереди</span>
+          <h2 id="cta-title">ТВОЯ ИСТОРИЯ<br>ЕЩЁ НЕ НАПИСАНА.</h2>
+          <p>Averis готовится к новой главе. Следи за развитием проекта — здесь появятся новости, адрес сервера и информация о запуске.</p>
+        </div>
+        <a class="btn primary reveal" href="https://github.com/FunnySculk/averis-website" target="_blank" rel="noopener noreferrer">Следить за проектом
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-main">
+        <a class="brand" href="#top" aria-label="Averis — наверх">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 37 33H27L20 19 13 33H3L20 3Z" fill="#ff752f"/><path d="M16 27h8l4 6H12l4-6Z" fill="#f5f1e9"/></svg>
+          AVERIS
+        </a>
+        <nav class="footer-nav" aria-label="Ссылки внизу страницы">
+          <a href="#features">Особенности</a>
+          <a href="#story">История</a>
+          <a href="#faq">Вопросы</a>
+          <a href="https://github.com/FunnySculk/AverisLauncher" target="_blank" rel="noopener noreferrer">Проект лаунчера ↗</a>
+        </nav>
+      </div>
+      <div class="footer-line">
+        <span>© <span id="year">2026</span> Averis. Независимый проект сообщества Minecraft.</span>
+        <span>Создано для историй, которые ещё не случились.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      "use strict";
+      const menu = document.getElementById("menu-toggle");
+      const nav = document.getElementById("nav");
+      const progress = document.getElementById("progress");
+      const year = document.getElementById("year");
+      year.textContent = String(new Date().getFullYear());
+
+      function closeMenu() {
+        nav.classList.remove("open");
+        menu.setAttribute("aria-expanded", "false");
+        menu.setAttribute("aria-label", "Открыть меню");
+      }
+      menu.addEventListener("click", function () {
+        const expanded = menu.getAttribute("aria-expanded") === "true";
+        nav.classList.toggle("open", !expanded);
+        menu.setAttribute("aria-expanded", String(!expanded));
+        menu.setAttribute("aria-label", expanded ? "Открыть меню" : "Закрыть меню");
+      });
+      nav.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", closeMenu);
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") closeMenu();
+      });
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 750) closeMenu();
+      });
+
+      let scheduled = false;
+      function updateProgress() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (max > 0 ? Math.min(100, window.scrollY / max * 100) : 0) + "%";
+        scheduled = false;
+      }
+      window.addEventListener("scroll", function () {
+        if (!scheduled) {
+          scheduled = true;
+          requestAnimationFrame(updateProgress);
+        }
+      }, { passive: true });
+      updateProgress();
+
+      const targets = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .09, rootMargin: "0px 0px 32px 0px" });
+        targets.forEach(function (el) { observer.observe(el); });
+      } else {
+        targets.forEach(function (el) { el.classList.add("visible"); });
+      }
+
+      const sections = ["features", "story", "journey", "faq"].map(function (id) { return document.getElementById(id); });
+      const links = Array.from(nav.querySelectorAll("a"));
+      if ("IntersectionObserver" in window) {
+        const activeObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              links.forEach(function (link) {
+                link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+              });
+            }
+          });
+        }, { rootMargin: "-25% 0px -65% 0px" });
+        sections.forEach(function (s) { activeObserver.observe(s); });
+      }
+    })();
+  </script>
+</body>
+</html>
