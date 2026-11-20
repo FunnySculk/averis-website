@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0c0e0d">
+  <meta name="theme-color" content="#10091f">
   <meta name="description" content="Averis — сюжетный Minecraft-сервер. Мир, который запоминает твой выбор.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Averis — мир, который помнит">
@@ -241,20 +241,19 @@
       .reveal { opacity: 1; transform: none; }
     }
   </style>
+  <link rel="stylesheet" href="./averis-theme.css">
 </head>
 <body>
   <div class="progress" id="progress" aria-hidden="true"></div>
   <header class="header">
     <div class="shell header-inner">
-      <a class="brand" href="#top" aria-label="Averis — на главную">
-        <svg viewBox="0 0 40 40" role="img" aria-label="Символ Averis"><path d="M20 3 37 33H27L20 19 13 33H3L20 3Z" fill="#ff752f"/><path d="M16 27h8l4 6H12l4-6Z" fill="#f5f1e9"/><path d="M20 4v14" stroke="#20130c" stroke-width="2"/></svg>
-        AVERIS
-      </a>
+      <a class="brand" href="#top" aria-label="Averis — на главную"><img src="./assets/averis-logo.webp" alt="Averis" width="155" height="51"></a>
       <nav class="nav" id="nav" aria-label="Основная навигация">
         <a href="#features">Особенности</a>
         <a href="#story">История</a>
         <a href="#journey">Твой путь</a>
         <a href="#faq">Вопросы</a>
+        <a href="./rules.html">Правила</a>
       </nav>
       <a class="header-link" href="#start">Узнать больше <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
@@ -265,58 +264,23 @@
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-scene" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
       <div class="shell hero-content">
         <div class="hero-copy">
-          <div class="hero-label"><span class="live-dot" aria-hidden="true"></span> Minecraft · Сюжетное выживание</div>
-          <h1 id="hero-title">МИР,<br>КОТОРЫЙ<br><span>ПОМНИТ.</span></h1>
-          <p class="hero-description">Здесь история не идёт по готовому сценарию. Она меняется вместе с теми, кто решает стать её частью. Добро пожаловать в Averis.</p>
+          <div class="hero-label"><span class="live-dot" aria-hidden="true"></span> MINECRAFT · СЮЖЕТНОЕ ВЫЖИВАНИЕ</div>
+          <img class="hero-logo" src="./assets/averis-logo.webp" alt="Логотип Averis" width="608" height="199" fetchpriority="high">
+          <h1 id="hero-title">МИР, КОТОРЫЙ <span>ПОМНИТ.</span></h1>
+          <p class="hero-description">Один мир. Разные судьбы. Здесь твои решения становятся частью общей истории.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#story">Узнать историю
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
             </a>
-            <a class="btn secondary" href="#features">Что ждёт в мире
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m7 10 5 5 5-5"/></svg>
+            <a class="btn secondary" href="./rules.html">Правила сервера
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
             </a>
           </div>
-          <div class="hero-meta"><span>Один мир</span><span>Разные судьбы</span><span>Твой выбор</span></div>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="art-orbit"></div>
-          <div class="art-coordinate top">A-001 // UNCHARTED<br>51° 08' 11"</div>
-          <svg class="world-diagram" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="frame" x1="110" y1="90" x2="540" y2="520" gradientUnits="userSpaceOnUse"><stop stop-color="#ad643c"/><stop offset=".5" stop-color="#32251b"/><stop offset="1" stop-color="#ff9346"/></linearGradient>
-              <linearGradient id="stone" x1="230" y1="150" x2="390" y2="450" gradientUnits="userSpaceOnUse"><stop stop-color="#4b3b30"/><stop offset=".45" stop-color="#211f1c"/><stop offset="1" stop-color="#0a0e0c"/></linearGradient>
-              <linearGradient id="fire" x1="244" y1="173" x2="351" y2="433" gradientUnits="userSpaceOnUse"><stop stop-color="#ffb466"/><stop offset=".44" stop-color="#ff6e2b"/><stop offset="1" stop-color="#5f2615"/></linearGradient>
-              <radialGradient id="halo"><stop stop-color="#ff742f" stop-opacity=".5"/><stop offset=".43" stop-color="#ff742f" stop-opacity=".12"/><stop offset="1" stop-color="#ff742f" stop-opacity="0"/></radialGradient>
-            </defs>
-            <ellipse cx="300" cy="310" rx="250" ry="258" fill="url(#halo)"/>
-            <path d="m300 45 231 132v266L300 575 69 443V177L300 45Z" stroke="#ff843333" stroke-width="1.5"/>
-            <path d="m300 80 203 116v228L300 540 97 424V196L300 80Z" stroke="#ff843344" stroke-width="1.2" stroke-dasharray="3 10"/>
-            <path d="m300 100 172 99v200L300 498 128 399V199L300 100Z" fill="#130f0d" stroke="url(#frame)" stroke-width="5"/>
-            <path d="m300 125 149 86v177L300 474l-149-86V211l149-86Z" stroke="#7d5036" stroke-width="1.5"/>
-            <path d="M300 125v349M151 211l298 177M449 211 151 388" stroke="#ba653d" stroke-opacity=".14" stroke-width="2"/>
-            <path d="m300 158 125 72v143l-125 72-125-72V230l125-72Z" fill="#201811" stroke="#8a4b2c" stroke-width="2"/>
-            <path class="core-glow" d="m300 178 109 63v121l-109 63-109-63V241l109-63Z" fill="url(#fire)"/>
-            <path d="m300 178 109 63-109 65-109-65 109-63Z" fill="#ffbf78" fill-opacity=".4"/>
-            <path d="M300 306v119l109-63V241l-109 65Z" fill="#5a2416" fill-opacity=".65"/>
-            <path d="m300 195 94 55v104l-94 55-94-55V250l94-55Z" fill="#111411" stroke="#fca45a" stroke-width="5"/>
-            <path d="m300 209 81 47v92l-81 47-81-47v-92l81-47Z" fill="url(#stone)"/>
-            <path d="m300 209 81 47-81 47-81-47 81-47Z" fill="#4e3c2c"/>
-            <path d="M300 303v92l81-47v-92l-81 47Z" fill="#181b19"/>
-            <path d="m300 234 59 34-59 34-59-34 59-34Z" fill="#f98236"/>
-            <path d="M241 268v64l59 35v-65l-59-34Z" fill="#b94c25"/>
-            <path d="M300 302v65l59-35v-64l-59 34Z" fill="#662d1d"/>
-            <path d="m300 261 35 21-35 20-35-20 35-21Z" fill="#ffbf71"/>
-            <path d="m300 302 35-20v27l-35 20v-27Z" fill="#ff8c3e"/>
-            <path d="m265 282 35 20v27l-35-20v-27Z" fill="#e2622c"/>
-            <path d="m300 130 0-37M300 480v37M140 216l-32-19M460 382l32 19M460 216l32-19M140 382l-32 19" stroke="#cb7041" stroke-width="1.5"/>
-            <g fill="#ff8a3f"><circle cx="300" cy="80" r="4"/><circle cx="97" cy="196" r="3"/><circle cx="503" cy="424" r="3"/><circle cx="300" cy="540" r="4"/></g>
-            <g stroke="#cb704155"><path d="M42 305h75m365 0h76M300 14v52m0 468v52"/></g>
-          </svg>
-          <div class="art-tag"><i></i> Мир открыт для историй</div>
-          <div class="art-coordinate bottom">FRAGMENT / 01<br>AVERIS ARCHIVE</div>
+          <div class="hero-meta"><span>Твой выбор</span><span>Живая история</span><span>Своё приключение</span></div>
         </div>
       </div>
     </section>
@@ -327,6 +291,16 @@
         <div class="ticker-body"><span>Сюжетный Minecraft-сервер</span><span class="sep" aria-hidden="true"></span><span>Свобода решений</span><span class="sep" aria-hidden="true"></span><span>Развитие мира вместе с игроками</span></div>
       </div>
     </div>
+
+    <section class="world-preview" aria-label="Иллюстрация мира Averis">
+      <div class="shell">
+        <div class="world-preview-head"><span class="eyebrow">AVERIS / НАШ МИР</span><span>01 / ОСТРОВА НАД ОБЛАКАМИ</span></div>
+        <figure class="world-preview-frame">
+          <img src="./assets/averis-world.webp" alt="Фиолетовый мир Averis: парящие острова среди облаков, луна, огни и высокая сияющая башня" width="1300" height="731" loading="lazy">
+          <figcaption>ВИЗУАЛЬНЫЙ МИР AVERIS <span>✦ АРТ ПРОЕКТА</span></figcaption>
+        </figure>
+      </div>
+    </section>
 
     <section class="section shell" id="features" aria-labelledby="features-title">
       <div class="section-head reveal">
@@ -455,14 +429,12 @@
   <footer>
     <div class="shell">
       <div class="footer-main">
-        <a class="brand" href="#top" aria-label="Averis — наверх">
-          <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 37 33H27L20 19 13 33H3L20 3Z" fill="#ff752f"/><path d="M16 27h8l4 6H12l4-6Z" fill="#f5f1e9"/></svg>
-          AVERIS
-        </a>
+        <a class="brand" href="#top" aria-label="Averis — наверх"><img src="./assets/averis-logo.webp" alt="Averis" width="155" height="51"></a>
         <nav class="footer-nav" aria-label="Ссылки внизу страницы">
           <a href="#features">Особенности</a>
           <a href="#story">История</a>
           <a href="#faq">Вопросы</a>
+          <a href="./rules.html">Правила</a>
           <a href="https://github.com/FunnySculk/AverisLauncher" target="_blank" rel="noopener noreferrer">Проект лаунчера ↗</a>
         </nav>
       </div>
