@@ -38,7 +38,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible {outline:2px solid #d
 .app-title em {font-style:normal;color:#d6a3ff}
 .app-copy {color:#d6c4e7;font:500 15px/1.85 Manrope,sans-serif;max-width:700px}
 .page-hero {position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid #654088;padding:100px 0 87px;background:#1b0b35}
-.page-hero:before {content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#0c041bec,#1b0b34bb 68%,#1b073583),url("./assets/averis-world.svg") center/cover}
+.page-hero:before {content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,#0c041bec,#1b0b34bb 68%,#1b073583),url("./assets/averis-home-bg.webp") center/cover}
 .page-hero:after {content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 85% 50%,#a149d83a,transparent 60%)}
 .page-hero-inner {display:flex;align-items:center;justify-content:space-between;gap:45px}
 .page-hero-art {width:190px;height:190px;border-radius:30px;object-fit:cover;box-shadow:0 18px 90px #bd65ff38,0 0 0 1px #9761c7;transform:rotate(-4deg);flex:none}

@@ -28,7 +28,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline-color:#d6
 .hero { min-height:660px;border-color:#5a337b; background:#281046; }
 .hero::before { display:none; }
 .hero-grid { display:none; }
-.hero-scene { position:absolute;inset:0;background-image:linear-gradient(180deg,#13082270,#18062220 35%,#1809246e 100%),url("./assets/averis-world.svg");background-position:center;background-size:cover;z-index:-2; }
+.hero-scene { position:absolute;inset:0;background-image:linear-gradient(180deg,#13082270,#18062220 35%,#1809246e 100%),url("./assets/averis-home-bg.webp");background-position:center;background-size:cover;z-index:-2; }
 .hero-vignette { position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 47%,#1e083f05 4%,#10051f70 100%); }
 .hero-content { display:grid;grid-template-columns:1fr;place-items:center;min-height:660px;padding:98px 0 90px; }
 .hero-copy { width:100%;max-width:840px;text-align:center;padding:36px 20px 16px;background:radial-gradient(ellipse at center,#210c42b0,#210c4200 74%); }
@@ -104,7 +104,7 @@ footer { background:#0e0719;border-color:#4c2e6e; }
 }
 /* Rules page */
 .rules-hero { position:relative; min-height:380px;overflow:hidden;isolation:isolate;display:flex;align-items:center;border-bottom:1px solid #693c95;background:#180b30; }
-.rules-hero::before { content:"";position:absolute;inset:0;z-index:-2;background:url("./assets/averis-world.svg") center 42% / cover no-repeat;opacity:.6; }
+.rules-hero::before { content:"";position:absolute;inset:0;z-index:-2;background:url("./assets/averis-home-bg.webp") center 42% / cover no-repeat;opacity:.6; }
 .rules-hero::after { content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#100820e8,#180c33cc 48%,#210a3c77); }
 .rules-hero .shell { padding:60px 0; }
 .rules-hero h1 { margin:16px 0 18px;font:700 clamp(54px,9vw,108px)/.98 var(--display);letter-spacing:-.07em; }
