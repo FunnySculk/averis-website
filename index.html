@@ -241,26 +241,16 @@
       .reveal { opacity: 1; transform: none; }
     }
   </style>
-  <link rel="stylesheet" href="./averis-theme.css">
+  <link rel="stylesheet" href="./averis-theme.css"><link rel="stylesheet" href="./app.css">
 </head>
 <body>
   <div class="progress" id="progress" aria-hidden="true"></div>
-  <header class="header">
-    <div class="shell header-inner">
-      <a class="brand" href="#top" aria-label="Averis — на главную"><img src="./assets/averis-logo.webp" alt="Averis" width="155" height="51"></a>
-      <nav class="nav" id="nav" aria-label="Основная навигация">
-        <a href="#features">Особенности</a>
-        <a href="#story">История</a>
-        <a href="#journey">Твой путь</a>
-        <a href="#faq">Вопросы</a>
-        <a href="./rules.html">Правила</a>
-      </nav>
-      <a class="header-link" href="#start">Узнать больше <span aria-hidden="true">↗</span></a>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
-      </button>
-    </div>
-  </header>
+  <header class="app-header"><div class="app-bar">
+    <a class="app-brand" href="./index.html" aria-label="Averis — на главную"><img src="./assets/averis-sheep.webp" alt="" width="44" height="44"><span>AVERIS</span></a>
+    <nav id="nav" class="app-nav" aria-label="Навигация"><a class="active" aria-current="page" href="./index.html">Главная</a><a  href="./navigator.html">Навигатор</a><a  href="./rules.html">Правила</a><a  href="./launcher.html">Лаунчер</a><a  href="./story.html">Сюжет</a><a  href="./join.html">Как попасть</a><a class="mobile-discord" href="https://discord.gg/8wbv5TZtAA" target="_blank" rel="noopener noreferrer">Вступить в Discord ↗</a></nav>
+    <a class="app-discord" href="https://discord.gg/8wbv5TZtAA" target="_blank" rel="noopener noreferrer"><span class="live-pip"></span> Вступить в Averis ↗</a>
+    <button id="menu-toggle" class="app-toggle" aria-label="Открыть меню" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div></header>
 
   <main id="top">
     <section class="hero" aria-labelledby="hero-title">
@@ -269,18 +259,10 @@
       <div class="shell hero-content">
         <div class="hero-copy">
           <div class="hero-label"><span class="live-dot" aria-hidden="true"></span> MINECRAFT · СЮЖЕТНОЕ ВЫЖИВАНИЕ</div>
-          <img class="hero-logo" src="./assets/averis-logo.webp" alt="Логотип Averis" width="608" height="199" fetchpriority="high">
+          <div class="main-emblem"><img src="./assets/averis-sheep.webp" alt="Эмблема Averis: облачный барашек" width="145" height="145"><span>AVERIS</span></div>
           <h1 id="hero-title">МИР, КОТОРЫЙ <span>ПОМНИТ.</span></h1>
           <p class="hero-description">Один мир. Разные судьбы. Здесь твои решения становятся частью общей истории.</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="#story">Узнать историю
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-            </a>
-            <a class="btn secondary" href="./rules.html">Правила сервера
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-            </a>
-          </div>
-          <div class="hero-meta"><span>Твой выбор</span><span>Живая история</span><span>Своё приключение</span></div>
+          <div class="hero-actions"><a class="btn primary" href="./navigator.html">Навигатор Averis ↗</a><a class="btn secondary" href="./join.html">Подать заявку ↗</a></div><div class="hero-meta"><span>Твой выбор</span><span>Живая история</span><span>Своё приключение</span></div>
         </div>
       </div>
     </section>
@@ -292,15 +274,7 @@
       </div>
     </div>
 
-    <section class="world-preview" aria-label="Иллюстрация мира Averis">
-      <div class="shell">
-        <div class="world-preview-head"><span class="eyebrow">AVERIS / НАШ МИР</span><span>01 / ОСТРОВА НАД ОБЛАКАМИ</span></div>
-        <figure class="world-preview-frame">
-          <img src="./assets/averis-world.webp" alt="Фиолетовый мир Averis: парящие острова среди облаков, луна, огни и высокая сияющая башня" width="1300" height="731" loading="lazy">
-          <figcaption>ВИЗУАЛЬНЫЙ МИР AVERIS <span>✦ АРТ ПРОЕКТА</span></figcaption>
-        </figure>
-      </div>
-    </section>
+    <section class="navigator-spot" aria-label="Навигатор Averis"><div class="app-wrap navigator-spot-inner"><div><span class="app-eyebrow">AVERIS / НАВИГАЦИЯ</span><h2>НАВИГАТОР <span style="color:#d7acff">AVERIS.</span></h2><p>Все страницы проекта в одном месте: правила, лаунчер, история и подача заявки на сервер. Отсюда удобно начать.</p></div><a class="app-button" href="./navigator.html">Открыть навигатор ↗</a></div></section>
 
     <section class="section shell" id="features" aria-labelledby="features-title">
       <div class="section-head reveal">
@@ -406,8 +380,8 @@
         <div class="faq-list reveal">
           <details><summary>Что такое Averis?</summary><p>Averis — Minecraft-сервер с выживанием, общим сюжетом и историями игроков, на которые влияют их решения.</p></details>
           <details><summary>Нужно ли участвовать в сюжете?</summary><p>Необязательно быть в центре каждого события. Ты можешь играть в своём темпе, строить, исследовать и постепенно узнавать мир.</p></details>
-          <details><summary>Когда можно будет зайти?</summary><p>Дату открытия и способ подключения объявят отдельно. Сейчас проект находится в подготовке — мы не хотим указывать на сайте неподтверждённый срок.</p></details>
-          <details><summary>Где скачать лаунчер?</summary><p>У Averis есть отдельный проект лаунчера, но ссылка на готовый релиз пока не опубликована. Когда он будет доступен, на сайте появится кнопка скачивания.</p></details>
+          <details><summary>Как попасть на сервер?</summary><p>Чтобы присоединиться, нужно подать заявку через Discord Averis. <a href="./join.html" style="color:#e4b1ff;text-decoration:underline">Подробная инструкция</a> находится на отдельной странице.</p></details>
+          <details><summary>Где скачать лаунчер?</summary><p>Лаунчер Averis пока в разработке. <a href="./launcher.html" style="color:#e4b1ff;text-decoration:underline">Информация о нём здесь</a>. Проверенную ссылку на релиз опубликуют в официальном Discord.</p></details>
         </div>
       </div>
     </section>
@@ -419,31 +393,16 @@
           <h2 id="cta-title">ТВОЯ ИСТОРИЯ<br>ЕЩЁ НЕ НАПИСАНА.</h2>
           <p>Averis готовится к новой главе. Следи за развитием проекта — здесь появятся новости, адрес сервера и информация о запуске.</p>
         </div>
-        <a class="btn primary reveal" href="https://github.com/FunnySculk/averis-website" target="_blank" rel="noopener noreferrer">Следить за проектом
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-        </a>
+        <a class="btn primary reveal" href="https://discord.gg/8wbv5TZtAA" target="_blank" rel="noopener noreferrer">Вступить в Averis ↗</a>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="shell">
-      <div class="footer-main">
-        <a class="brand" href="#top" aria-label="Averis — наверх"><img src="./assets/averis-logo.webp" alt="Averis" width="155" height="51"></a>
-        <nav class="footer-nav" aria-label="Ссылки внизу страницы">
-          <a href="#features">Особенности</a>
-          <a href="#story">История</a>
-          <a href="#faq">Вопросы</a>
-          <a href="./rules.html">Правила</a>
-          <a href="https://github.com/FunnySculk/AverisLauncher" target="_blank" rel="noopener noreferrer">Проект лаунчера ↗</a>
-        </nav>
-      </div>
-      <div class="footer-line">
-        <span>© <span id="year">2026</span> Averis. Независимый проект сообщества Minecraft.</span>
-        <span>Создано для историй, которые ещё не случились.</span>
-      </div>
-    </div>
-  </footer>
+  <footer class="app-footer"><div class="app-wrap">
+    <div class="app-footer-top"><a class="app-brand" href="./index.html"><img src="./assets/averis-sheep.webp" alt="" width="46" height="46"><span>AVERIS</span></a><p>Мир, в котором твои решения становятся частью истории.</p><a class="app-footer-discord" href="https://discord.gg/8wbv5TZtAA" target="_blank" rel="noopener noreferrer">Discord Averis ↗</a></div>
+    <nav class="app-footer-links" aria-label="Нижняя навигация"><a href="./index.html">Главная</a><a href="./navigator.html">Навигатор</a><a href="./rules.html">Правила</a><a href="./launcher.html">Лаунчер</a><a href="./story.html">Сюжет</a><a href="./join.html">Как попасть</a></nav>
+    <div class="app-footer-bottom">© <span class="year">2026</span> Averis. Независимый Minecraft-проект. <span>Не связан с Mojang или Microsoft.</span></div>
+  </div></footer>
 
   <script>
     (function () {
