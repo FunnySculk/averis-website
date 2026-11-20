@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10091f">
+  <meta name="description" content="Правила сервера Averis: честная игра, уважение, постройки, сюжет и общение.">
+  <title>Правила — Averis</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./averis-theme.css">
+  <style>
+    /* Base layout for the standalone rules page */
+    :root { --font:"Manrope","Segoe UI",sans-serif; --display:"Space Grotesk",Arial,sans-serif;--text:#f8f1ff;--bg:#10091f; }
+    *,*::before,*::after {box-sizing:border-box}
+    html {scroll-behavior:smooth;scroll-padding-top:100px}
+    body {margin:0;min-width:320px;font-family:var(--font);-webkit-font-smoothing:antialiased;background:#10091f;color:var(--text)}
+    a {color:inherit;text-decoration:none}
+    button {font:inherit}
+    .shell {width:min(1200px,calc(100% - 72px));margin:auto}
+    .header {position:sticky;top:0;z-index:50;background:rgba(17,8,32,.92);border-bottom:1px solid #69459855;backdrop-filter:blur(15px)}
+    .header-inner {height:78px;display:flex;align-items:center;justify-content:space-between;gap:26px}
+    .brand {display:inline-flex;align-items:center;flex:none}
+    .brand img {width:155px;height:auto}
+    .nav {display:flex;align-items:center;gap:clamp(20px,3vw,42px);margin-left:auto}
+    .nav a {font:700 12px var(--font);color:#cdb9de}
+    .nav a:hover,.nav a.active {color:#fff}
+    .header-link {display:inline-flex;align-items:center;gap:10px;flex:none;padding:13px 16px;font:800 11px var(--display);color:#f1d4ff;border:1px solid #7844aa;background:#27133f;letter-spacing:.06em}
+    .menu-toggle {display:none;width:42px;height:42px;justify-content:center;align-items:center;color:#fff;background:#26163c;border:1px solid #70479c;cursor:pointer}
+    .menu-toggle svg {width:20px}
+    .eyebrow {display:inline-flex;gap:10px;align-items:center;color:#d69dff;font:700 11px/1.5 var(--display);letter-spacing:.21em;text-transform:uppercase}
+    .eyebrow::before {content:"";height:1px;width:20px;background:currentColor}
+    .rules-hero {position:relative;min-height:380px;overflow:hidden;isolation:isolate;display:flex;align-items:center;border-bottom:1px solid #693c95;background:#180b30}
+    .rules-hero::before {content:"";position:absolute;inset:0;z-index:-2;background:url("./assets/averis-world.webp") center 42% / cover no-repeat;opacity:.55}
+    .rules-hero::after {content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#100820ee,#180c33ca 48%,#210a3c77)}
+    .rules-hero .shell {padding:60px 0}
+    .rules-hero h1 {margin:16px 0 18px;font:700 clamp(54px,9vw,108px)/.98 var(--display);letter-spacing:-.07em}
+    .rules-hero p {max-width:600px;color:#dec6ed;line-height:1.8;margin-bottom:0}
+    .rule-notice {margin-top:24px;display:inline-flex;gap:10px;align-items:center;padding:12px 16px;background:#271343b9;border:1px solid #9157b3;color:#eccdfc;font:700 11px var(--display)}
+    .rules-layout {display:grid;grid-template-columns:230px minmax(0,1fr);gap:65px;padding-top:74px;padding-bottom:105px}
+    .rules-nav {position:sticky;top:120px;align-self:start;display:flex;flex-direction:column;gap:4px;border-left:1px solid #68428b;padding-left:12px}
+    .rules-nav span {display:block;font:700 11px var(--display);color:#c88df1;letter-spacing:.13em;text-transform:uppercase;margin:0 0 17px 12px}
+    .rules-nav a {display:block;font:700 13px var(--display);color:#bda1ce;padding:12px;border-left:2px solid transparent;transition:.2s}
+    .rules-nav a:hover,.rules-nav a:focus-visible {border-left-color:#dba8ff;background:#26143d;color:#f4e0ff}
+    .rule-group {margin-bottom:64px;scroll-margin-top:106px}
+    .rule-group-header {padding-bottom:20px;margin-bottom:10px;border-bottom:1px solid #593679}
+    .rule-group-header h2 {display:flex;align-items:center;gap:22px;margin:12px 0 0;font:700 clamp(29px,4vw,43px) var(--display);letter-spacing:-.05em}
+    .rule-group-header h2 small {font:700 14px var(--display);color:#ca8ef4;letter-spacing:0}
+    .rule-row {display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 3px;border-bottom:1px solid #38224e}
+    .rule-row:last-child {border-bottom:0}
+    .number {font:700 12px var(--display);color:#bc7beb;padding-top:5px}
+    .rule-row h3 {font:700 17px var(--display);letter-spacing:-.025em;margin:0 0 7px}
+    .rule-row p {font:500 13px/1.85 var(--font);color:#c9b4d7;margin:0}
+    .rules-end {background:linear-gradient(110deg,#27113e,#1a0c2b);border:1px solid #72449a;padding:31px 35px}
+    .rules-end h3 {font:700 23px var(--display);margin:0 0 8px}
+    .rules-end p {font-size:13px;line-height:1.8;color:#d1b7e0;margin:0}
+    footer {background:#0e0719;border-top:1px solid #4c2e6e;padding:35px 0}
+    .footer-main {display:flex;align-items:center;flex-wrap:wrap;justify-content:space-between;gap:25px}
+    .footer-nav {display:flex;flex-wrap:wrap;gap:24px;color:#cbb4dd;font:700 11px var(--display)}
+    .footer-nav a:hover {color:#e6b6ff}
+    .footer-line {display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;padding-top:28px;margin-top:30px;border-top:1px solid #312043;color:#aa94bf;font:500 11px/1.7 var(--font)}
+    @media(max-width:750px) {
+      .shell {width:calc(100% - 36px)}
+      .header-inner {height:69px}
+      .brand img {width:126px}
+      .header-link {display:none}
+      .menu-toggle {display:flex}
+      .nav {display:none;position:absolute;top:69px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:12px 18px 18px;background:#1b0e32;border-bottom:1px solid #5e397c}
+      .nav.open {display:flex}
+      .nav a {padding:16px 7px;border-bottom:1px solid #472d63;font-size:14px}
+      .rules-hero {min-height:320px}
+      .rules-layout {display:block;padding-top:42px;padding-bottom:75px}
+      .rules-nav {position:static;flex-direction:row;flex-wrap:wrap;gap:7px;border:0;padding:0;margin-bottom:46px}
+      .rules-nav span {width:100%;margin:0 0 9px}
+      .rules-nav a {border:1px solid #633c81;background:#201035;padding:10px 12px;font-size:11px}
+      .rule-group {margin-bottom:46px}
+      .rule-row {grid-template-columns:40px 1fr;gap:12px}
+      .rules-end {padding:25px}
+    }
+    @media(prefers-reduced-motion:reduce) {html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html" aria-label="Averis — на главную"><img src="./assets/averis-logo.webp" alt="Averis" width="155" height="51"></a>
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a href="./index.html">Главная</a><a href="./index.html#features">Особенности</a><a href="./index.html#story">История</a><a href="./index.html#journey">Твой путь</a><a class="active" href="./rules.html" aria-current="page">Правила</a>
+      </nav>
+      <a class="header-link" href="./index.html">← На главную</a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    </div>
+  </header>
+  <main>
+    <section class="rules-hero" aria-labelledby="rules-title">
+      <div class="shell"><span class="eyebrow">Averis / Информация</span><h1 id="rules-title">ПРАВИЛА<br>СЕРВЕРА.</h1><p>Место, где история создаётся игроками, должно оставаться комфортным для каждого. Эти простые принципы помогают сохранить честную игру.</p>
+        <div class="rule-notice"><span aria-hidden="true">✦</span> Предварительная редакция 0.1 · возможны изменения</div>
+      </div>
+    </section>
+    <div class="shell rules-layout">
+      <nav class="rules-nav" aria-label="Разделы правил">
+        <span>На этой странице</span>
+        <a href="#respect">01 / Уважение</a>
+        <a href="#fair">02 / Честная игра</a>
+        <a href="#builds">03 / Постройки</a>
+        <a href="#roleplay">04 / Сюжет</a>
+        <a href="#community">05 / Общение</a>
+        <a href="#moderation">06 / Модерация</a>
+      </nav>
+      <div>
+        <section class="rule-group" id="respect">
+          <div class="rule-group-header"><span class="eyebrow">01 / Люди</span><h2><small>01.</small> Уважение к игрокам</h2></div>
+          <div class="rule-row"><span class="number">1.1</span><div><h3>Без оскорблений и травли</h3><p>Не допускаются унижения, угрозы, дискриминация, преследование и намеренное создание конфликтов.</p></div></div>
+          <div class="rule-row"><span class="number">1.2</span><div><h3>Личные границы</h3><p>Уважай чужое время, личное пространство и нежелание участвовать в конкретных игровых сценах.</p></div></div>
+        </section>
+        <section class="rule-group" id="fair">
+          <div class="rule-group-header"><span class="eyebrow">02 / Выживание</span><h2><small>02.</small> Честная игра</h2></div>
+          <div class="rule-row"><span class="number">2.1</span><div><h3>Без читов</h3><p>Запрещены программы и модификации, которые дают нечестное преимущество: X-Ray, автоматизация действий, недоступная обычному игроку, и похожие средства.</p></div></div>
+          <div class="rule-row"><span class="number">2.2</span><div><h3>Без дюпов и эксплуатации ошибок</h3><p>Не используй баги, дублирование предметов и уязвимости ради выгоды. Сообщай об обнаруженных проблемах администрации.</p></div></div>
+          <div class="rule-row"><span class="number">2.3</span><div><h3>Не мешай игре других</h3><p>Не создавай механизмы для намеренного перегруза сервера и не мешай другим игрокам подключаться и играть.</p></div></div>
+        </section>
+        <section class="rule-group" id="builds">
+          <div class="rule-group-header"><span class="eyebrow">03 / Мир</span><h2><small>03.</small> Постройки и территории</h2></div>
+          <div class="rule-row"><span class="number">3.1</span><div><h3>Не разрушай чужое</h3><p>Гриферство, кража имущества и порча чужих построек без разрешения запрещены.</p></div></div>
+          <div class="rule-row"><span class="number">3.2</span><div><h3>Уважай обозначенные территории</h3><p>Не занимай явно отмеченную территорию другого игрока и не блокируй доступ к чужому дому или объектам.</p></div></div>
+          <div class="rule-row"><span class="number">3.3</span><div><h3>Береги общие места</h3><p>Общие постройки, спавн и сюжетные объекты нельзя переделывать или разрушать без согласования.</p></div></div>
+        </section>
+        <section class="rule-group" id="roleplay">
+          <div class="rule-group-header"><span class="eyebrow">04 / История</span><h2><small>04.</small> Сюжет и события</h2></div>
+          <div class="rule-row"><span class="number">4.1</span><div><h3>Дай другим играть свою роль</h3><p>Не навязывай другим исход событий и не принимай решения за чужого персонажа без согласия игрока.</p></div></div>
+          <div class="rule-row"><span class="number">4.2</span><div><h3>Не ломай сюжетные сцены</h3><p>Во время организованных событий следуй техническим указаниям ведущего. Намеренный срыв сцены недопустим.</p></div></div>
+          <div class="rule-row"><span class="number">4.3</span><div><h3>Не распространяй спойлеры</h3><p>Не раскрывай информацию из закрытых сюжетных событий, если она ещё не должна быть известна другим игрокам.</p></div></div>
+        </section>
+        <section class="rule-group" id="community">
+          <div class="rule-group-header"><span class="eyebrow">05 / Сообщество</span><h2><small>05.</small> Чат и общение</h2></div>
+          <div class="rule-row"><span class="number">5.1</span><div><h3>Без спама</h3><p>Не засоряй чат, не размещай навязчивую рекламу и не используй массовые упоминания без причины.</p></div></div>
+          <div class="rule-row"><span class="number">5.2</span><div><h3>Без выдачи себя за других</h3><p>Не представляйся администрацией или другим игроком и не публикуй чужую личную информацию.</p></div></div>
+        </section>
+        <section class="rule-group" id="moderation">
+          <div class="rule-group-header"><span class="eyebrow">06 / Порядок</span><h2><small>06.</small> Модерация</h2></div>
+          <div class="rule-row"><span class="number">6.1</span><div><h3>Решения по ситуации</h3><p>При нарушениях администрация может применить предупреждение, временные ограничения или блокировку с учётом обстоятельств.</p></div></div>
+          <div class="rule-row"><span class="number">6.2</span><div><h3>Есть право на объяснение</h3><p>Если считаешь решение ошибочным, спокойно изложи свою позицию администрации и приложи материалы, которые помогут разобраться.</p></div></div>
+        </section>
+        <div class="rules-end"><h3>Главный принцип — уважай чужую историю.</h3><p>Averis строится вокруг свободы выбора. Но твоя свобода не должна отнимать возможность играть у остальных. Окончательная редакция правил будет уточнена до открытия сервера.</p></div>
+      </div>
+    </div>
+  </main>
+  <footer><div class="shell">
+    <div class="footer-main"><a class="brand" href="./index.html" aria-label="На главную Averis"><img src="./assets/averis-logo.webp" alt="Averis" width="155" height="51"></a><nav class="footer-nav" aria-label="Ссылки"><a href="./index.html">Главная</a><a href="./index.html#features">Особенности</a><a href="./index.html#story">История</a><a href="./rules.html">Правила</a></nav></div>
+    <div class="footer-line"><span>© <span id="year">2026</span> Averis. Независимый Minecraft-проект.</span><span>Не связан с Mojang или Microsoft.</span></div>
+  </div></footer>
+  <script>
+    (function(){document.getElementById("year").textContent=String(new Date().getFullYear());var toggle=document.getElementById("menu-toggle");var nav=document.getElementById("nav");toggle.addEventListener("click",function(){var open=toggle.getAttribute("aria-expanded")!=="true";toggle.setAttribute("aria-expanded",String(open));toggle.setAttribute("aria-label",open?"Закрыть меню":"Открыть меню");nav.classList.toggle("open",open)});document.querySelectorAll(".nav a").forEach(function(a){a.addEventListener("click",function(){toggle.setAttribute("aria-expanded","false");nav.classList.remove("open")})});document.addEventListener("keydown",function(e){if(e.key==="Escape"){nav.classList.remove("open");toggle.setAttribute("aria-expanded","false")}})})();
+  </script>
+</body>
+</html>
